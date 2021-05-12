@@ -1,0 +1,262 @@
+= Professionelle Softwareentwicklung: Woche 5
+:icons: font
+:icon-set: fa
+:source-highlighter: rouge
+:experimental:
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== Begrüßung und Organisatorisches 
+Schauen Sie sich das https://youtu.be/HuGfg2jxCtw[Begrüßungsvideo] an.
+
+=== Anmeldung zur dritten praktischen Übung
+Bitte denken Sie daran, sich bis zum 13.05.2021 um 14:30 Uhr auf https://pure.mops.cs.hhu.de für die dritte praktische Übung anzumelden.
+
+== Aufgabe 1: Abstraktion
+
+[quote, Jorge Luis Borges]
+“To think is to forget a difference, to generalize, to abstract.”
+
+Schauen Sie sich das Video zum Thema https://youtu.be/TU53DHZn4tU[Abstraktionen] an.
+
+
+*Leitfragen/Aufgaben:*
+
+* Laden Sie das Zauberschloss Programm von der Diskette und lassen Sie sich das Listing ausgeben. Stellen Sie sich vor, Sie müssten das Programm abändern. Versuchen Sie es einmal! Wenn Sie im Spiel den Ring drehen, dann sehen Sie flackernde Farben. Entfernen Sie dieses Farbflackern. 
++
+NOTE: Wenn Sie ein Listing anschauen wollen, das nicht auf den Bildschirm passt, können Sie `LIST A - B` verwenden um die Zeilen zwischen Zeile A und Zeile B anzuzeigen. Sie können A und B auch jeweils weglassen, d.h. `LIST -100` zeigt alle Zeilen bis 100 an. 
+
+* Rekapitulieren Sie für sich, was die wesentlichen Vorteile der Abstraktion von Anweisungssequenzen und der Abstraktion von Datenstrukturen sind. 
+
+* Schauen wir zurück auf das Collection Framework. Wo finden sich dort Abstraktionen? 
++
+TIPP: Es gibt dort jede Menge Abstraktionen, denken Sie auch über die Beziehungen zwischen den Klassen und den Interfaces nach. 
+
+* Ist die "Enhanced for Loop" eine Abstraktion der normalen for Schleife?  
+
+* Was passiert eigentlich bei dem Aufruf von `Math.sqrt(2.0);`?
+
+* Ändern Sie die Preisliste für Früchte so ab, dass der Strich, der zwischen dem Header und der Tabelle ist, genauso lang ist wie die Headerzeile. Es gibt hier die Möglichkeit eine Abstraktion zu schaffen, die sowohl Striche, als auch die Leerräume innerhalb der Tabelle behandelt.
++
+[source]
+----
+Produkt Preis
+-------------
+Kiwi    0.59
+----
+
+* Versuchen Sie einmal `int goto = 5;` zu schreiben. Was passiert da und warum?
+
+* Portieren Sie das Programm zur Berechnung der Hypotenusenlänge nach Java. Versuchen Sie einmal, wie das Programm aussieht, wenn Sie ausschließlich globale Variablen verwenden. 
+
+* Ändern Sie das `SOUND` Programm auf der C64 Diskette so ab, dass eine Sequenz von zufälligen Tönen produziert wird. 
+
+* Schreiben Sie ein Programm für den Commodore C64, welches eine Zahl einliest und dann die Ziffern in umgekehrter Reihenfolge ausgibt.
++
+[source]
+----
+Zahl? 433
+334 
+Zahl? 532
+235
+----
+
+*Zusatzmaterial:*
+
+* https://www.youtube.com/watch?v=ZJocPKDVQSc[Abstraction - A Programming Concept]
+
+* C64 
+** https://c64emulator.111mb.de/index.php?site=pp_javascript&lang=en&group=c64[C64 im Browser]
+** https://vice-emu.sourceforge.io/[Vice - the Versatile Commodore Emulator]
+
+** https://www.winz.run/c64/download/sonderhefte/index.html[64'er Magazin Sonderhefte]
+** http://sta.c64.org/cbm64mem.html[Jedes einzelne Byte des C64 Speichers erklärt]
+** https://www.c64-wiki.com/wiki/[C64 Wiki] mit umfassenden Informationen zum C64
+
+** https://www.planetemu.net/machine/commodore-64[64'er Heft-Disketten, Programme, Spiele, ...] 
+
+* Pascal 
+**  Das http://tpcg.io/RPzlDHRh[Pythagoras Beispiel] in einem browserbasierten Pascal
+** http://www.tutorialspoint.com/pascal/index.htm[Pascal Tutorial]
+
+
+== Aufgabe 2: Fehlersuche 
+
+Schauen Sie sich das Video zum Thema https://youtu.be/QLeGNaS0-UQ[Debugging] an.
+
+*Leitfragen/Aufgaben:*
+
+* Was ist der Zusammenhang zwischen Defect, Infection und Failure?
+
+* Zwei der folgenden Aussagen sind wahr, zwei sind falsch. Welches sind die wahren Aussagen?
+** Ein Defect führt immer zu einer Infection
+** Eine Infection ist immer Resultat eines Defects
+** Eine Infection führt immer zu einem Failure
+** Ein Failure ist immer Resultat eines Defects
+
+* Die Methode `binarySearch` aus der Klasse `Collections` sucht einen Wert in einer Kollektion. Sie gibt den Index des Wertes in der Kollektion zurück. Ein negativer Wert zeigt an, dass der Wert nicht vorhanden ist. Was ist der Fehler in folgendem Code? Reparieren Sie den Fehler.
++
+[source, java]
+----
+ List<Integer> results = List.of(13,7,2,19,27,22,55,33,8);
+ System.out.println(Collections.binarySearch(results,27)); // => 4 (stimmt)
+ System.out.println(Collections.binarySearch(results,55)); // => 6 (stimmt) 
+ System.out.println(Collections.binarySearch(results,7)); // => 1 (stimmt) 
+ System.out.println(Collections.binarySearch(results,22)); // => -5 (falsch)
+ System.out.println(Collections.binarySearch(results,2)); // => -1 (falsch)
+ System.out.println(Collections.binarySearch(results,13)); // => -4 (falsch)
+----
+
+* Im Ordner `debugreduce` finden Sie ein Programm, dass eine Liste von Personendaten liest und eine Häufigkeitsverteilung über die Toplevel-Domänen der Mailadressen erstellt. Lassen Sie das Programm laufen. Sie stellen fest, dass es abstürzt. Versuchen Sie durch "binäre Suche" eine möglichst kleine Eingabedatei zu erzeugen, die das Problem reproduziert.  
+
+* Vermutlich haben Sie das Problem durch die Minimierung der Datei schon identifiziert. Beheben Sie jetzt das Problem, wie Sie das Problem genau lösen, können Sie selber entscheiden, das Programm soll aber nicht mehr abstürzen. 
+
+*Zusatzmaterial:*
+
+* Interaktives Buch: https://www.debuggingbook.org/[The Debugging Book] von Andreas Zeller
+* Buch: https://katalog.ulb.hhu.de/Record/9947399500406443[Why programs fail] von Andreas Zeller
+* Buch: https://katalog.ulb.hhu.de/Record/9947404534706443[Debug it!] von Paul Butcher
+
+== Java Upgrade 
+
+=== Java Reflection
+
+Schauen Sie sich folgendes https://youtu.be/agnblS47F18[Java Reflection Tutorial] von Derek Banas an. Im Ordner `ufo` finden Sie den Code aus dem Video in einer etwas abgespeckten Variante. Das Exception Handling wurde etwas geändert, damit der Code etwas einfacher lesbar ist. Das Thema Fehlerbehandlung werden wir und demnächst anschauen. 
+
+IMPORTANT: In dem Video wird gezeigt, wie Sie auf private Informationen eines Objekts zugreifen können. Benutzen Sie das nicht, Sie können damit die Wartbarkeit des Codes ruinieren! 
+
+Neben der gezeigten Art, an eine Klasse zu kommen, indem wir das statische Attribut `class` der Klasse verwenden, können wir auch über die `getClass` Methode einer Instanz an ein `Class` Objekt kommen. Ein dritter Weg, mit dem wir sogar an Klassen kommen können, die zur Compilezeit noch nicht bekannt sind ist die statische Methode `forName` der Klasse `Class`.  
+
+[source, java]
+----
+Class c1 = String.class;
+System.out.println(c1); // => class java.lang.String
+System.out.println(c1.getClass()); // => class java.lang.Class
+String s = "foo";
+Class c2 = s.getClass();
+System.out.println(c1.equals(c2)); // => true
+Class c3 = Class.forName("java.lang.String");
+System.out.println(c1.equals(c3));  // => true
+----
+
+Mit `getMethods` bekommen wir alle `public`, die auf dem Objekt aufgerufen werden können inklusive Methoden, die von einer Superklasse geerbt wurden. In dem Beispiel stammt die `notifyAll` Methode aus `Object`. Mit `getDeclaredMethods` bekommen wir die Methoden, die in der Klasse selber implementiert oder überschrieben wurden inklusive der privaten Methoden. 
+
+[source, java]
+----
+Class c = String.class;
+Method[] publicMethoden = c.getMethods(); 
+System.out.println(publicMethoden[publicMethoden-1]); //=> public final native void java.lang.Object.notifyAll()
+Method[] eigeneMethoden = c.getDeclaredMethods();
+System.out.println(x[2]); // => public int java.lang.String.length()
+----
+
+Wir haben analog auch Zugriff auf die Attribute einer Klasse mit `getFields` bzw. `getDeclaredFields` und viele weitere Eigenschaften der Klasse wie innere oder umschließende Klassen, Superklassen, das Package, ob es sich um ein Interface oder einen Aufzählungstyp handelt, etc.
+
+Außerdem können wir die Klasse `Class` verwenden, um uns Instanzen eines Objektes zu verschaffen. In dem Beispiel holen wir uns aus der `Long` Klasse den Konstruktor, der einen `String` als Parameter bekommt und rufen den Konstruktor dann auf um ein `Long` Objekt zu erhalten.
+
+[source, java]
+----
+Class<Long> c = Long.class;
+var constructor = c.getConstructor(String.class);
+Long v = constructor.newInstance("42");
+System.out.println(v.getClass() + ": " + v); // => class java.lang.Long: 42
+----
+
+Warum dieser ganze Aufwand, wenn wir doch einfach `Long v = new Long("42")` schreiben können? 
+
+Reflection ist der Weg, wie wir Code in einer Anwendung verwenden können, der erst später geschrieben wird. Denken Sie einmal an die Plugins in Ihrem Webbrowser oder Ihrer IDE. Ein Plugin ist Code, von dem die Entwickler:innen der Basisanwendung nicht wissen, wie er aussieht und was er macht.
+
+In der Basisanwendung wird ein Interface zur Verfügung gestellt, dass Plugins implementieren. Zur Laufzeit muss der Plugin Code aber in irgendeiner Form instanziiert werden und hier kommt Reflection ins Spiel. 
+
+Das Programm im Ordner `plugins` demonstriert, wie wir eine Anwendung schreiben können, die zur Laufzeit neuen Code ausführen kann. 
+
+[source, java]
+----
+package application;
+
+import java.util.Scanner;
+import spec.Schnittstelle;
+
+public class Runner {
+
+  private Scanner in = new Scanner(System.in);
+
+  public void run() throws Exception {
+
+    String line = "";
+    do {
+      System.out.println("Welches Plugin soll benutzt werden?");
+      line = in.nextLine();
+    } while (runPlugin(line));
+  }
+
+
+  // ACHTUNG! Das ist keine adäquate Fehlerbehandlung!
+  private boolean runPlugin(String line) throws Exception {
+    if (line.isBlank()) {
+      return false;
+    }
+    Class<Schnittstelle> c = (Class<Schnittstelle>) Class.forName(line);
+    Schnittstelle plugin = c.getDeclaredConstructor().newInstance();
+    plugin.execute();
+    return true;
+  }
+
+  public static void main(String[] args) throws Exception {
+    new Runner().run();
+  }
+}
+----
+
+WARNING: Zugriffe mit Reflection sind ca. 10 mal langsamer als normale Aufrufe, wir sollten das also sparsam einsetzen. 
+
+*Leitfragen/Aufgaben:*
+
+* Wie müssen doch jedes Plugin im Browser oder in der IDE installieren. Dann brauchen wir doch eigentlich keine Reflection, oder?
+
+* Plugin-Anwendung ausprobieren 
+
+** Machen Sie sich klar, wie die Klasse funktioniert.
+
+** Bauen Sie mit Gradle das `jar` File im `plugins` Projekt.
+
+** Schreiben Sie im `plugin_vorlage` Ordner ein Plugin. Verwenden Sie einen beliebigen Klassennamen und ggf. ein beliebig benanntes Package. Kompilieren Sie Ihre Plugin-Klasse mit `javac` in dem `plugin_vorlage` Ordner.
+
+** Starten Sie die Anwendung in `plugins` von Hand mit `java`. Setzen Sie das erzeugte `jar` File und den `plugin_vorlage` Ordner als Klassenpfad. Lassen Sie `plugins.Plugin1` laufen und dann ihr eigenes Plugin.   
+
+* Als Nächstes wollen wir die Notwendigkeit eine Schnittstelle zu implementieren loswerden. Löschen Sie das Interface `Schnittstelle` aus der Anwendung und erzeugen Sie Instanzen von `Object`. Sie können dann natürlich nicht mehr die Methode `execute` aufrufen. Rufen Sie stattdessen per Reflection alle Methoden auf, die keine Parameter übergeben bekommen. Schreiben Sie einige Klassen mit passenden Methoden und probieren Sie das Programm damit aus.
+
+*Zusatzmaterial:*
+
+* https://www.youtube.com/watch?v=agnblS47F18[Java Reflection Tutorial]
+
+* Artikel von Oracle über https://www.oracle.com/technical-resources/articles/java/javareflection.html[Reflection] mit Codebeispielen
+
+* https://katalog.ulb.hhu.de/Record/9947399583406443[Java Reflection] Videokurs
+
+
+=== Annotationen
+
+Sie haben in Programmierung schon die Annotation `@Override` kennengelernt, aber
+
+Wir haben Annotationen schon gesehen und auch im Code benutzt, aber es wird nun Zeit, dass wir uns einmal anschauen, was Annotationen eigentlich sind. Schauen Sie sich dazu https://youtu.be/eSPII0jSz88[dieses Video] an.
+
+*Bearbeiten Sie folgende Fragen/Aufgaben:*
+
+* Schreiben Sie eine `@AggregateRoot` Annotation, die im Kompilationsvorgang entfernt wird und mit Klassen assoziiert werden kann. 
+
+* Schreiben Sie eine `@Run` Annotation, die zur Laufzeit vorhanden ist und die an Methoden geschrieben werden kann. 
+
+* Ändern Sie das Plugin Programm so ab, dass nicht mehr alle Methoden ohne Parameter aufgerufen werden, sondern nur die Methoden, die mit `@Run` annotiert sind. Probieren Sie das Programm mit einem passenden Plugin aus. 
++
+TIP: Die `Method` Klasse hat Methoden um herauszufinden, welche Annotationen vorhanden sind.
+
+*Zusatzmaterial:*
+
+* https://openbook.rheinwerk-verlag.de/javainsel9/javainsel_25_001.htm#mja2e217bf5724cc65eba184a2af8b79cf[Reflection und Annotationen] in Java ist auch eine Insel
+
